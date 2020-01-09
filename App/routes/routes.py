@@ -1,18 +1,21 @@
-from flask import Flask
 from flask import render_template
+from flask import Blueprint
 from flask_scss import Scss
 from flaskext.markdown import Markdown
+from App import app
 import mistune
 
-app = Flask(__name__)
+main = Blueprint('main', __name__)
 Scss(app)
 Markdown(app)
 
-@app.route('/')
+
+@main.route('/')
 def index():
     return render_template('home.html')
 
-@app.route('/2')
+
+@main.route('/2')
 def index2():
     # data = open('_posts/2017-02-01-markdown-examples.md').read()
     # data = mistune.markdown(data)
@@ -20,4 +23,6 @@ def index2():
     return render_template('home2.html', content=data)
 
 
-app.run(host='127.0.0.1', port= 81, debug=True)
+@main.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
