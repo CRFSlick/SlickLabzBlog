@@ -3,6 +3,7 @@ from flask import Blueprint
 from flask_scss import Scss
 from flaskext.markdown import Markdown
 from App import app
+from App.modules.api.api import get_data
 import mistune
 
 main = Blueprint('main', __name__)
@@ -19,7 +20,7 @@ def index():
 def index2():
     # data = open('_posts/2017-02-01-markdown-examples.md').read()
     # data = mistune.markdown(data)
-    data = ''
+    data = get_data()
     return render_template('home2.html', content=data)
 
 

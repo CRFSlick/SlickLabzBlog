@@ -110,10 +110,15 @@ pre {
 	padding: .2em .4em
 }
 
-/* .highlight pre {
-	background: rgba(36, 37, 43, 0.9);
+.highlight pre {
+	background: rgba(36, 37, 43, 0.9) !important;
 	color: #fff
-} */
+}
+
+pre {
+	background: rgba(36, 37, 43, 0.9) !important;
+	color: #fff
+}
 
 .c {
 	color: #a29f90
@@ -364,7 +369,7 @@ article header h1 {
 }
 
 body>header {
-	background: #15171A;
+	background: #1a1b20;
 	color: #fff;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.05)
 }

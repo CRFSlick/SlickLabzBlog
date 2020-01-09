@@ -6,22 +6,22 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/classes.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/minimal.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/markdown.css') }}">
 
 <style>
-	.markdown-body {
-		box-sizing: border-box;
-		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-	}
+  .markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+  }
 
-	@media (max-width: 767px) {
-		.markdown-body {
-			padding: 15px;
-		}
-	}
+  @media (max-width: 767px) {
+    .markdown-body {
+      padding: 15px;
+    }
+  }
 </style>
 
 
@@ -39,28 +39,16 @@
 </header>
 
 <body>
-<article>
-  <header>
-  <span class="categories">test</span>
-    <h1>title</h1>
-    test123
-    <time datetime="test date">test date</time>
-  </header>
-  <span class="markdown-body">
-    <h2>
-<a id="user-content-code" class="anchor" href="#code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code</h2>
-<p>Source code can be included by fencing the code with three backticks. Syntax highlighting works automatically when specifying the language after the backticks.</p>
-<pre><code>```javascript
-function foo () {
-    return "bar";
-}
-```
-</code></pre>
-<p>This would be rendered as:</p>
-<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">foo</span> () {
-    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>;
-}</pre></div>
-  </span>
+  <article>
+    <header>
+      <span class="categories">CaptureTheFlag</span>
+      <h1>HackTheBox - Craft</h1>
+<!--      test123-->
+      <time datetime="test date">February 01, 2017</time>
+    </header>
+    <span class="markdown-body">
+      {{ content|safe }}
+    </span>
 
-</article>
+  </article>
 </body>
