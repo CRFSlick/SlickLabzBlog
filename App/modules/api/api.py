@@ -1,4 +1,3 @@
-from App import app
 import requests
 import json
 

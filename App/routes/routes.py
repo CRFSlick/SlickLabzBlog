@@ -1,11 +1,8 @@
 from flask import render_template
 from flask import Blueprint
-from flask_scss import Scss
-from flaskext.markdown import Markdown
 from App import app
 from App.modules.api.api import github_markdown
-from App.modules.helpers.helpers import get_metadata, get_post
-import mistune
+from App.modules.helpers.helpers import get_post
 
 main = Blueprint('main', __name__)
 
