@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<script src="https://kit.fontawesome.com/71dfc51b7d.js" crossorigin="anonymous"></script>
+
+<title>test123</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/classes.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/minimal.css') }}">
+
+
+<header>
+  <h2><a href="test">SlickLabz Blog</a></h2>
+  <nav class="icons">
+    <a href="https://facebook.com/fontawesome"><svg>
+        <use xlink:href="{{ url_for('static', filename='fontawesome/brands.svg') }}#github"></use>
+      </svg></a><a href="https://facebook.com/fontawesome"><svg>
+        <use xlink:href="{{ url_for('static', filename='fontawesome/brands.svg') }}#twitter"></use>
+      </svg></a><a href="https://facebook.com/fontawesome"><svg>
+        <use xlink:href="{{ url_for('static', filename='fontawesome/brands.svg') }}#facebook"></use>
+      </svg></a>
+  </nav>
+</header>
+
+<body>
+  <article>
+    <header>
+      <h1>Posts</h1>
+    </header>
+    <ul class="archive">
+      <li>
+        <time datetime="test">test</time>
+        <a href="test">rwar</a>
+      </li>
+    </ul>
+  </article>
+</body>
