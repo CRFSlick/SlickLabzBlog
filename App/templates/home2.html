@@ -41,14 +41,12 @@
 <body>
   <article>
     <header>
-      <span class="categories">CaptureTheFlag</span>
-      <h1>HackTheBox - Craft</h1>
-<!--      test123-->
-      <time datetime="test date">February 01, 2017</time>
+      <span class="categories">{{ post.category }}</span>
+      <h1>{{ post.sub_category }} - {{post.title}}</h1>
+      <time datetime="test date">{{ post.date }}</time>
     </header>
     <span class="markdown-body">
-      {{ content|safe }}
+      {{ post.content|safe }}
     </span>
-
   </article>
 </body>

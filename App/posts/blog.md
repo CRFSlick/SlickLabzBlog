@@ -1,10 +1,10 @@
 {{ META START }}
 
 {
-    'category': 'CaptureTheFlag',
-    'sub_category': 'HackTheBox',
-    'title': 'Craft',
-    'date': 'February 01, 2017'
+    "category": "CaptureTheFlag",
+    "sub_category": "HackTheBox",
+    "title": "Craft",
+    "date": "February 01, 2017"
 }
 
 {{ META END }}
