@@ -4,3 +4,11 @@
   margin-right: auto;
   width: 50%;
 }
+
+img {
+  max-width:50px;
+  max-height:50px;
+  width: auto;
+  height: auto;
+  margin: 0;
+}

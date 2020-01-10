@@ -5,8 +5,10 @@
   <header>
     <h1>Welcome!</h1>
     <div>
-      Hello! My name is Karol, aka CRFSlick or Slick, and I like to work on wargames and capture the flag challanges in my freetime. 
-      This blog is a platform for me to post my write ups for these challanges in hopes of reinforcing my own understanding of the challanges
+      Hello! My name is Karol, aka CRFSlick or Slick, and I like to work on wargames and capture the flag challanges in
+      my freetime.
+      This blog is a platform for me to post my write ups for these challanges in hopes of reinforcing my own
+      understanding of the challanges
       as well as showing others my train of thought. Thanks for stopping by and I hope you learn something new!
     </div>
   </header>
@@ -17,31 +19,14 @@
     <h1>Recent WriteUps</h1>
   </header>
   <ul class="archive">
+    {% for post in posts %}
     <li>
-      <!-- <span>CaptureTheFlag</span> -->
-      <a href="test">HackTheBox - Craft</a>
-      <!-- <img src="https://0xrick.github.io/images//hackthebox/craft/0.png"> -->
+      <span>
+        <!-- <img src="{{ url_for('static', filename='images/craft.PNG') }}"> -->
+        <a href="{{ post.url }}">{{ post.sub_category }} - {{ post.title }}</a>
+      </span>
     </li>
-    <li>
-      <!-- <span>CaptureTheFlag</span> -->
-      <a href="test">HackTheBox - Obscurity</a>
-      <!-- <img src="https://0xrick.github.io/images//hackthebox/craft/0.png"> -->
-    </li>
-    <li>
-      <!-- <span>CaptureTheFlag</span> -->
-      <a href="test">HackTheBox - OpenAdmin</a>
-      <!-- <img src="https://0xrick.github.io/images//hackthebox/craft/0.png"> -->
-    </li>
-    <li>
-      <!-- <span>CaptureTheFlag</span> -->
-      <a href="test">PicoCTF - Mus1c</a>
-      <!-- <img src="https://0xrick.github.io/images//hackthebox/craft/0.png"> -->
-    </li>
-    <li>
-      <!-- <span>CaptureTheFlag</span> -->
-      <a href="test">See All Posts</a>
-      <!-- <img src="https://0xrick.github.io/images//hackthebox/craft/0.png"> -->
-    </li>
+    {% endfor %}
   </ul>
 </article>
 
