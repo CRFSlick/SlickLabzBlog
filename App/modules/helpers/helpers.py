@@ -1,4 +1,6 @@
+from App import app
 import json
+import glob
 
 
 def get_post(data):
@@ -11,3 +13,11 @@ def get_post(data):
         metadata = json.loads(data[index_1 + len(start_tag):index_2])
         metadata['content'] = data[index_2 + len(end_tag):].strip()
         return metadata
+
+
+def get_posts():
+    posts = []
+    tmp_posts = glob.glob(app.root_path + '\\posts\\*.md')
+    for post in tmp_posts:
+        posts.append(post.split("\\")[len(post.split("\\")) - 1])
+    return posts
