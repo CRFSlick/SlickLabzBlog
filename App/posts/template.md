@@ -9,4 +9,4 @@
 
 {{ META END }}
 
-Put the page contents here!
+Put your Github flavored markdown here!

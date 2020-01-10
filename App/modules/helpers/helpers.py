@@ -9,8 +9,10 @@ import os
 def determine_slash_type():
     """
     Gets the right type of slash for compatibility between linux/mac/windows
+
     Returns:
         slash_type
+
     """
     current_path = os.path.dirname(__file__)
 
@@ -25,11 +27,26 @@ def determine_slash_type():
 
 
 def log_view(post, ip):
+    """
+    Logs a view for a given post and IP
+
+    Args:
+        post (dict)
+        ip (str)
+
+    """
     url = post['url']
     filename = post['filename']
     slash = determine_slash_type()
     full_path = f'{app.root_path}{slash}data{slash}views.json'
-    views_log = json.loads(open(full_path, 'r').read())
+
+    try:
+        views_log = json.loads(open(full_path, 'r').read())
+    except FileNotFoundError:
+        views_log = list()
+        views_log.append({'url': url, 'filename': filename, 'views': 1, 'ips': [ip]})
+        open(full_path, 'w+').write(json.dumps(views_log, indent=4))
+        return
 
     for post in views_log:
         if post['url'] == url and post['filename'] == filename:
@@ -41,19 +58,28 @@ def log_view(post, ip):
             else:
                 return
 
-    views_log.append({'url': url, 'views': 1, 'filename': filename, 'ips': [ip]})
+    views_log.append({'url': url, 'filename': filename, 'views': 1, 'ips': [ip]})
     open(full_path, 'w+').write(json.dumps(views_log, indent=4))
     return
 
 
 def write_meta(metadata, data, index_1, index_2, filename):
+    """
+    Writes modified metadata back to an existing file
+
+    Args:
+       metadata (dict)
+       data (str)
+       index_1 (int)
+       index_2 (int)
+       filename (str)
+
+    """
     start_tag = '{{ META START }}'
     end_tag = '{{ META END }}'
     data_to_keep = data[index_2 + len(end_tag):].strip()
 
-    meta = '{{ META START }}\n' \
-           f'{json.dumps(metadata, indent=4)}\n' \
-           '{{ META END }}\n\n'
+    meta = f'{start_tag}\n{json.dumps(metadata, indent=4)}\n{end_tag}\n\n'
 
     slash = determine_slash_type()
     open(f'{app.root_path}{slash}posts{slash}{filename}', 'w+').write(meta + data_to_keep)
@@ -61,6 +87,17 @@ def write_meta(metadata, data, index_1, index_2, filename):
 
 
 def get_post_data(data, filename):
+    """
+    Gets metadata for a given post
+
+    Args:
+        data (str)
+        filename (str)
+
+    Returns:
+        metadata (dict)
+
+    """
     start_tag = '{{ META START }}'
     end_tag = '{{ META END }}'
     index_1 = data.find(start_tag)
@@ -80,6 +117,14 @@ def get_post_data(data, filename):
 
 
 def get_posts():
+    """
+    Gets a list of all posts located in the posts directory
+    *NOTE* Posts must conform to the following format: "category-subcategory-title.md"
+
+    Returns:
+        posts (list)
+
+    """
     posts = []
     slash = determine_slash_type()
     post_filenames = glob.glob(f'{app.root_path}{slash}posts{slash}*.md')
@@ -100,6 +145,16 @@ def get_posts():
 
 
 def get_categories(posts):
+    """
+    Gets a list of all categories for sorting
+
+    Args:
+        posts (list)
+
+    Returns:
+        categories (list)
+
+    """
     categories = []
     for post in posts:
         category = post['data']['category']
