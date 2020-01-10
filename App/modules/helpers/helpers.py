@@ -1,4 +1,5 @@
 from App import app
+import re
 import json
 import glob
 
@@ -40,17 +41,15 @@ def get_posts():
     posts = []
     post_filenames = glob.glob(app.root_path + '\\posts\\*.md')
 
-    try:
-        post_filenames.remove(app.root_path + '\\posts\\template.md')
-    except ValueError:
-        pass
-
     for filename in post_filenames:
         post = dict()
         post['filename'] = filename.split("\\")[len(filename.split("\\")) - 1]
-        post['url'] = '/'.join(post['filename'].rstrip('.md').split('-'))
-        post['data'] = get_post_data(open(app.root_path + f'\\posts\\{post["filename"]}').read())
-        posts.append(post)
+        if len(re.findall('(.*)-(.*)-(.*).md', post['filename'])) == 1:
+            post['url'] = '/'.join(post['filename'].rstrip('.md').split('-'))
+            post['data'] = get_post_data(open(app.root_path + f'\\posts\\{post["filename"]}').read())
+            posts.append(post)
+        else:
+            continue
 
     return posts
 

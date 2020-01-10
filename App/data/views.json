@@ -1,10 +1,1 @@
-[
-    {
-        "url": "ctf/htb/craft",
-        "views": 4,
-        "filename": "ctf-htb-craft.md",
-        "ips": [
-            "127.0.0.1"
-        ]
-    }
-]
+[{"url": "ctf/htb/craft", "views": 4, "filename": "ctf-htb-craft.md", "ips": ["127.0.0.1"]}, {"url": "ctf/htb/obscurity", "views": 2, "filename": "ctf-htb-obscurity.md", "ips": ["127.0.0.7", "127.0.0.1"]}, {"url": "minecraft/redstone/pistons", "views": 1, "filename": "minecraft-redstone-pistons.md", "ips": ["127.0.0.1"]}]
