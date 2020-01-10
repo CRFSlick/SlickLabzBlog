@@ -5,14 +5,6 @@
   width: 50%;
 }
 
-/* img {
-  max-width:50px;
-  max-height:50px;
-  width: auto;
-  height: auto;
-  margin: 0;
-} */
-
 .search {
   width: 100%;
   position: relative;
@@ -36,7 +28,6 @@
 
 .searchButton {
   width: 40px;
-  /* height: 36px; */
   border: 1px solid rgb(133, 133, 133);
   background: rgb(133, 133, 133);
   text-align: center;
@@ -46,7 +37,6 @@
   font-size: 20px;
 }
 
-/*Resize the wrap to see the search bar change!*/
 .wrap{
   width: 100%;
 }
