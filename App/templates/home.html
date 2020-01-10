@@ -16,18 +16,34 @@
 
 <article>
   <header>
-    <h1>Recent WriteUps</h1>
+    <h1>Recent Posts</h1>
   </header>
   <ul class="archive">
     {% for post in posts %}
     <li>
       <span>
         <!-- <img src="{{ url_for('static', filename='images/craft.PNG') }}"> -->
-        <a href="{{ post.url }}">{{ post.sub_category }} - {{ post.title }}</a>
+        <a href="{{ post.url }}">{{ post.data.sub_category }} - {{ post.data.title }}</a>
       </span>
     </li>
     {% endfor %}
   </ul>
 </article>
+
+<article>
+  <header>
+    <h1>All Posts</h1>
+  </header>
+  <ul class="archive">
+    <li>
+      <span>
+        <!-- <img src="{{ url_for('static', filename='images/craft.PNG') }}"> -->
+        <a href="/posts">Click here to see more posts!</a>
+      </span>
+    </li>
+  </ul>
+</article>
+
+
 
 {% endblock %}

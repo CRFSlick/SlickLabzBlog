@@ -17,17 +17,27 @@ def get_post_data(data):
 
 def get_posts():
     posts = []
-    tmp_posts = glob.glob(app.root_path + '\\posts\\*.md')
+    post_filenames = glob.glob(app.root_path + '\\posts\\*.md')
 
     try:
-        tmp_posts.remove(app.root_path + '\\posts\\template.md')
+        post_filenames.remove(app.root_path + '\\posts\\template.md')
     except ValueError:
         pass
 
-    for post in tmp_posts:
-        post_data = dict()
-        post_data['filename'] = post.split("\\")[len(post.split("\\")) - 1]
-        post_data['url'] = '/'.join(post_data['filename'].rstrip('.md').split('-'))
-        posts.append(post_data)
+    for filename in post_filenames:
+        post = dict()
+        post['filename'] = filename.split("\\")[len(filename.split("\\")) - 1]
+        post['url'] = '/'.join(post['filename'].rstrip('.md').split('-'))
+        post['data'] = get_post_data(open(app.root_path + f'\\posts\\{post["filename"]}').read())
+        posts.append(post)
 
     return posts
+
+
+def get_categories(posts):
+    categories = []
+    for post in posts:
+        category = post['data']['category']
+        if category not in categories:
+            categories.append(category)
+    return categories

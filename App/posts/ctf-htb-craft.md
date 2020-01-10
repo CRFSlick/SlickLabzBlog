@@ -1,7 +1,7 @@
 {{ META START }}
 
 {
-    "category": "CaptureTheFlag",
+    "category": "HTB",
     "sub_category": "HackTheBox",
     "title": "Craft",
     "date": "February 01, 2017"

@@ -3,12 +3,12 @@
 
 <article>
     <header>
-      <span class="categories">{{ post.category }}</span>
-      <h1>{{ post.sub_category }} - {{post.title}}</h1>
-      <time datetime="test date">{{ post.date }}</time>
+      <span class="categories">#{{ post.data.category }}</span>
+      <h1>{{ post.data.sub_category }} - {{post.data.title}}</h1>
+      <time datetime="test date">{{ post.data.date }}</time>
     </header>
     <span class="markdown-body">
-      {{ post.content|safe }}
+      {{ post.data.content|safe }}
     </span>
 </article>
 

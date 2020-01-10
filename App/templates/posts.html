@@ -1,0 +1,39 @@
+{% extends "defualt.html" %}
+{% block content %}
+
+<article>
+  <header>
+    <h1>Search</h1>
+  </header>
+  <!-- Search Bar Source: https://codepen.io/huange/pen/rbqsD -->
+  <div class="wrap">
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="This doesn't work yet, sorry">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</article>
+
+{% for category in categories %}
+<article>
+  <header>
+    <h1>{{ category }}</h1>
+  </header>
+  <ul class="archive">
+    {% for post in posts %}
+      {% if post.data.category == category %}
+        <li>
+          <span>
+            <!-- <img src="{{ url_for('static', filename='images/craft.PNG') }}"> -->
+            <a href="{{ post.url }}">{{ post.data.sub_category }} - {{ post.data.title }}</a>
+          </span>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</article>
+{% endfor %}
+
+{% endblock %}

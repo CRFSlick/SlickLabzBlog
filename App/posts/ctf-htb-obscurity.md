@@ -1,7 +1,7 @@
 {{ META START }}
 
 {
-    "category": "CaptureTheFlag",
+    "category": "HTB",
     "sub_category": "HackTheBox",
     "title": "Obscurity",
     "date": "February 07, 2019"
