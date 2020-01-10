@@ -1,0 +1,10 @@
+[
+    {
+        "url": "ctf/htb/craft",
+        "views": 4,
+        "filename": "ctf-htb-craft.md",
+        "ips": [
+            "127.0.0.1"
+        ]
+    }
+]

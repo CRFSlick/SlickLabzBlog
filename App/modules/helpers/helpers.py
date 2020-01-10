@@ -3,6 +3,27 @@ import json
 import glob
 
 
+def log_view(post, ip):
+    url = post['url']
+    filename = post['filename']
+    full_path = f'{app.root_path}\\data\\views.json'
+    views_log = json.loads(open(full_path, 'r').read())
+
+    for post in views_log:
+        if post['url'] == url and post['filename'] == filename:
+            if ip not in post['ips']:
+                post['views'] += 1
+                post['ips'].append(ip)
+                open(full_path, 'w+').write(json.dumps(views_log))
+                return
+            else:
+                return
+
+    views_log.append({'url': url, 'views': 1, 'filename': filename, 'ips': [ip]})
+    open(full_path, 'w+').write(json.dumps(views_log))
+    return
+
+
 def get_post_data(data):
     start_tag = '{{ META START }}'
     end_tag = '{{ META END }}'

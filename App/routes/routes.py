@@ -1,9 +1,10 @@
 from flask import render_template
 from flask import Blueprint
 from flask import abort
+from flask import request
 from App import app
 from App.modules.api.api import github_markdown
-from App.modules.helpers.helpers import get_post_data, get_posts, get_categories
+from App.modules.helpers.helpers import get_post_data, get_posts, get_categories, log_view
 
 main = Blueprint('main', __name__)
 
@@ -23,11 +24,12 @@ def posts():
 
 @main.route('/<category>/<subcategory>/<post>')
 def display_post(category, subcategory, post):
-    request = f'{category}-{subcategory}-{post}'
+    requested_post = f'{category}-{subcategory}-{post}'
     posts = get_posts()
 
     for post in posts:
-        if request == post['filename'].rstrip('.md'):
+        if requested_post == post['filename'].rstrip('.md'):
+            log_view(post, request.remote_addr)
             post['data']['content'] = github_markdown(post['data']['content'])
             return render_template('post.html', post=post)
 
