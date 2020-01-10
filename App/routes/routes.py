@@ -4,7 +4,7 @@ from flask import abort
 from flask import request
 from App import app
 from App.modules.api.api import github_markdown
-from App.modules.helpers.helpers import get_post_data, get_posts, get_categories, log_view
+from App.modules.helpers.helpers import get_posts, get_categories, log_view
 
 main = Blueprint('main', __name__)
 

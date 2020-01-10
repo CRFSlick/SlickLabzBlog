@@ -1,6 +1,12 @@
 {% extends "default.html" %}
 {% block content %}
 
+{% if posts|length <= 5 %}
+{% set count=posts|length %}
+{% else %}
+{% set count=5 %}
+{% endif %}
+
 <article>
   <header>
     <h1>Welcome!</h1>
@@ -19,11 +25,10 @@
     <h1>Recent Posts</h1>
   </header>
   <ul class="archive">
-    {% for post in posts %}
+    {% for i in range(0, count) %}
     <li>
       <span>
-        <!-- <img src="{{ url_for('static', filename='images/craft.PNG') }}"> -->
-        <a href="{{ post.url }}">{{ post.data.sub_category }} - {{ post.data.title }}</a>
+        <a href="{{ posts[i].url }}">{{ posts[i].data.sub_category }} - {{ posts[i].data.title }}</a>
       </span>
     </li>
     {% endfor %}
