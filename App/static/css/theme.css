@@ -377,6 +377,6 @@ body>header {
 }
 
 footer {
-	padding: 5rem !important;
+	padding: 5rem calc(35% - 12rem) !important;
 }
 
