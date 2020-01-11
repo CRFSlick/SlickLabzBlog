@@ -43,17 +43,14 @@ def get_markdown(markdown_raw, requested_post):
     try:
         cached_markdown = open(f'{path_to_cached_files}{requested_post}.html', 'r', encoding='utf-8').read()
         cached_markdown_raw = open(f'{path_to_cached_files}{requested_post}.md', 'r', encoding='utf-8').read()
-        print('Got markdown from cache!')
     except FileNotFoundError:
         markdown = github_api(markdown_raw)
         cache_page(markdown, markdown_raw, requested_post)
-        print('No cache found, creating new cache!')
         return markdown
 
     if markdown_raw != cached_markdown_raw:
         markdown = github_api(markdown_raw)
         cache_page(markdown, markdown_raw, requested_post)
-        print('Cache found, but file has been updated, creating new cache!')
         return markdown
 
     return cached_markdown
