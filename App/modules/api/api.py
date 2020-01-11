@@ -1,3 +1,4 @@
+from App import app
 import requests
 import json
 
@@ -14,7 +15,10 @@ def github_markdown(markdown_raw):
     """
 
     api_url = 'https://api.github.com/'
-    headers = {'content-type': 'text/plain; charset=UTF-8'}
+    headers = {
+        'content-type': 'text/plain; charset=UTF-8',
+        'Authorization': f'token {app.config["GITHUB_OAUTH"]}'
+    }
 
     data = {
         'text': markdown_raw,
