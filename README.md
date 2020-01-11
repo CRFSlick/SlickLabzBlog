@@ -2,4 +2,4 @@
 
 A personal blog
 
-Live at: [Coming Soon]
+Live at: http://blog.slicklabz.com
