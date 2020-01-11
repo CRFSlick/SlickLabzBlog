@@ -4,6 +4,30 @@ from App import app
 worthless_var = None
 
 
+class APIError(Exception):
+
+    def __init__(self, code, name, description):
+        self.code = code
+        self.name = name
+        self.description = description
+
+    # @property
+    # def code(self):
+    #     """
+    #     Returns:
+    #         code (str)
+    #     """
+    #     return self._code
+    #
+    # @code.setter
+    # def code(self, value):
+    #     """
+    #     Sets:
+    #         code (str)
+    #     """
+    #     self._code = value
+
+
 @app.errorhandler(400)
 @app.errorhandler(401)
 @app.errorhandler(403)
@@ -29,5 +53,6 @@ worthless_var = None
 @app.errorhandler(503)
 @app.errorhandler(504)
 @app.errorhandler(505)
+@app.errorhandler(APIError)
 def page_not_found(e):
     return render_template('error.html', title=e.code, code=e.code, name=e.name, description=e.description), e.code

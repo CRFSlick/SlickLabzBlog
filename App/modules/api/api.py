@@ -1,4 +1,5 @@
 from App.modules.helpers.helpers import determine_slash_type
+from App.routes.error_handler import APIError
 from App import app
 import requests
 import json
@@ -85,11 +86,9 @@ def github_api(markdown_raw):
     r = requests.post(url=api_url + 'markdown', headers=headers, data=data)
 
     if r.status_code != 200:
-        response = f'Github API Error [Code {r.status_code}] ' \
-                   f'Something went wrong when trying to convert text to markdown using Github API.'
-        # raise Exception(response)
+        raise APIError(500, 'API Error', 'Something went wrong with the Github API, please check their status page '
+                                         'and try again later.')
     else:
-        print(r.status_code)
         response = r.text
 
     return response
