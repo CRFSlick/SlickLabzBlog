@@ -107,7 +107,9 @@ pre {
 	opacity: .75;
 	border-radius: 2px;
 	margin: 0 .1em;
-	padding: .2em .4em
+	padding: .2em .4em;
+	color: #c7254e !important;
+	font-weight: bold;
 }
 
 .highlight pre {
