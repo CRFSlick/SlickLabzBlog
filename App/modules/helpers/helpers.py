@@ -38,7 +38,7 @@ def log_view(post, ip):
     url = post['url']
     filename = post['filename']
     slash = determine_slash_type()
-    full_path = f'{app.root_path}{slash}data{slash}views.json'
+    full_path = f'{app.root_path}{slash}data{slash}views{slash}views.json'
 
     try:
         views_log = json.loads(open(full_path, 'r').read())
