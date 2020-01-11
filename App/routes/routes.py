@@ -34,5 +34,4 @@ def display_post(category, subcategory, post):
             page_tile = f'{post["data"]["sub_category"]} - {post["data"]["title"]}'
             return render_template('post.html', post=post, page_title=page_tile)
 
-    abort(500)
-
+    abort(404)
