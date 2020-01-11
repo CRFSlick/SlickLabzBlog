@@ -26,3 +26,6 @@ app.config.from_object(Config)
 # Register application routes
 from App.routes.routes import main
 app.register_blueprint(main)
+
+# Initialize error handler
+from App.routes.error_handler import worthless_var

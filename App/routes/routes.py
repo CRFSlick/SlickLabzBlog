@@ -34,9 +34,5 @@ def display_post(category, subcategory, post):
             page_tile = f'{post["data"]["sub_category"]} - {post["data"]["title"]}'
             return render_template('post.html', post=post, page_title=page_tile)
 
-    abort(404)
+    abort(500)
 
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404

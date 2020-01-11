@@ -68,6 +68,7 @@ def github_api(markdown_raw):
         r.text (str)
     """
 
+    response = None
     api_url = 'https://api.github.com/'
     headers = {
         'content-type': 'text/plain; charset=UTF-8',
@@ -82,4 +83,14 @@ def github_api(markdown_raw):
 
     data = json.dumps(data)
     r = requests.post(url=api_url + 'markdown', headers=headers, data=data)
-    return r.text
+
+    if r.status_code != 200:
+        response = f'Github API Error [Code {r.status_code}] ' \
+                   f'Something went wrong when trying to convert text to markdown using Github API.'
+        # raise Exception(response)
+    else:
+        print(r.status_code)
+        response = r.text
+
+    return response
+
