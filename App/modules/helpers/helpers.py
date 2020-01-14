@@ -133,9 +133,9 @@ def get_posts():
         post = dict()
         post['filename'] = filename.split(slash)[len(filename.split(slash)) - 1]
         if len(re.findall('(.*)-(.*)-(.*).md', post['filename'])) == 1:
+            data = open(f'{app.root_path}{slash}posts{slash}{post["filename"]}', 'r', encoding='utf-8').read()
             post['url'] = '/'.join(post['filename'].rstrip('.md').split('-'))
-            post['data'] = get_post_data(open(f'{app.root_path}{slash}posts{slash}{post["filename"]}', 'r').read(),
-                                         post['filename'])
+            post['data'] = get_post_data(data, post['filename'])
             posts.append(post)
         else:
             continue
