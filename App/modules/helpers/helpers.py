@@ -40,13 +40,18 @@ def log_view(post, ip):
     slash = determine_slash_type()
     full_path = f'{app.root_path}{slash}data{slash}views{slash}views.json'
 
-    try:
-        views_log = json.loads(open(full_path, 'r').read())
-    except FileNotFoundError:
-        views_log = list()
-        views_log.append({'url': url, 'filename': filename, 'views': 1, 'ips': [ip]})
-        open(full_path, 'w+').write(json.dumps(views_log, indent=4))
-        return
+    while True:
+        try:
+            views_log = json.loads(open(full_path, 'r').read())
+            break
+        except FileNotFoundError:
+            views_log = list()
+            views_log.append({'url': url, 'filename': filename, 'views': 1, 'ips': [ip]})
+            open(full_path, 'w+').write(json.dumps(views_log, indent=4))
+            return
+        except:
+            # In case flask workers try an access the same file at the same time...
+            pass
 
     for post in views_log:
         if post['url'] == url and post['filename'] == filename:
@@ -61,6 +66,40 @@ def log_view(post, ip):
     views_log.append({'url': url, 'filename': filename, 'views': 1, 'ips': [ip]})
     open(full_path, 'w+').write(json.dumps(views_log, indent=4))
     return
+
+
+def get_views(post):
+    """
+    Gets views for a given post
+
+    Args:
+        post (dict)
+
+    """
+    url = post['url']
+    filename = post['filename']
+    slash = determine_slash_type()
+    full_path = f'{app.root_path}{slash}data{slash}views{slash}views.json'
+
+    while True:
+        try:
+            views_log = json.loads(open(full_path, 'r').read())
+            break
+        except FileNotFoundError:
+            return '0 Views'
+        except:
+            # In case flask workers try an access the same file at the same time...
+            pass
+
+    for post in views_log:
+        if post['url'] == url and post['filename'] == filename:
+            views = post['views']
+            if views == 1:
+                return f'{views} View'
+            else:
+                return f'{views} Views'
+
+    return '0 Views'
 
 
 def write_meta(metadata, data, index_1, index_2, filename):
@@ -104,7 +143,10 @@ def get_post_data(data, filename):
     index_2 = data.find(end_tag)
 
     if index_1 != -1 and index_2 != -1:
-        metadata = json.loads(data[index_1 + len(start_tag):index_2])
+        try:
+            metadata = json.loads(data[index_1 + len(start_tag):index_2])
+        except:
+            raise Exception('Error parsing post JSON metadata!')
 
         try:
             metadata['timestamp']
