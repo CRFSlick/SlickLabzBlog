@@ -1,4 +1,7 @@
+from App.modules.helpers.helpers import determine_slash_type
+from App.modules.log.log import Log
 from flask import render_template
+from flask import request
 from App import app
 
 worthless_var = None
@@ -10,22 +13,6 @@ class APIError(Exception):
         self.code = code
         self.name = name
         self.description = description
-
-    # @property
-    # def code(self):
-    #     """
-    #     Returns:
-    #         code (str)
-    #     """
-    #     return self._code
-    #
-    # @code.setter
-    # def code(self, value):
-    #     """
-    #     Sets:
-    #         code (str)
-    #     """
-    #     self._code = value
 
 
 @app.errorhandler(400)
@@ -55,4 +42,12 @@ class APIError(Exception):
 @app.errorhandler(505)
 @app.errorhandler(APIError)
 def page_not_found(e):
+
+    # Log an internal server error
+    if e.code == 500:
+        slash = determine_slash_type()
+        log_path = f'{app.root_path}{slash}data{slash}log{slash}'
+        Log(directory=log_path).out(f'Cod: {e.code} | Path: {request.path}', level='error')
+
+    # Handle error
     return render_template('error.html', title=e.code, code=e.code, name=e.name, description=e.description), e.code
