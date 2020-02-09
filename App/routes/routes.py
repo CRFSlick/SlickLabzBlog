@@ -1,4 +1,4 @@
-from App.modules.helpers.helpers import get_posts, get_categories, log_view
+from App.modules.helpers.helpers import get_posts, get_categories, log_view, get_views
 from App.modules.api.api import get_markdown
 from flask import render_template
 from flask import Blueprint
@@ -30,6 +30,7 @@ def display_post(category, subcategory, post):
     for post in posts:
         if requested_post == post['filename'].rstrip('.md'):
             log_view(post, request.remote_addr)
+            post['data']['views'] = get_views(post)
             post['data']['content'] = get_markdown(post['data']['content'], requested_post)
             page_tile = f'{post["data"]["sub_category"]} - {post["data"]["title"]}'
             return render_template('post.html', post=post, page_title=page_tile)
