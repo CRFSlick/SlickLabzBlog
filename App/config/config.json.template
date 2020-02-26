@@ -1,3 +1,6 @@
 {
+  "username": "YOUR USERNAME HERE",
+  "password": "YOUR PASSWORD HERE",
+  "secret_key": "YOUR SECRET KEY HERE",
   "github_oauth": "YOUR OAUTH HERE"
 }
