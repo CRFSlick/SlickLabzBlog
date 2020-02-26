@@ -1,10 +1,11 @@
-from App.modules.helpers.helpers import get_posts, get_categories, log_view, get_views
+from App.modules.helpers.helpers import get_posts, get_categories, log_view, get_views, login_required
 from App.modules.api.api import get_markdown
 from flask import render_template
 from flask import Blueprint
 from flask import abort
 from flask import request
 from App import app
+import flask
 
 main = Blueprint('main', __name__)
 
@@ -22,18 +23,26 @@ def posts():
     return render_template('posts.html', posts=posts, categories=categories, page_title="All Posts")
 
 
-@main.route('/login', methods=['GET'])
+@main.route('/login', methods=['GET', 'POST'])
 def login():
-    # posts = get_posts()
-    # categories = get_categories(posts)
-    return render_template('login.html', page_title="Login")
+    if request.method == 'GET':
+        return render_template('login.html', page_title="Login")
+    elif request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
 
+        if username == app.config['USERNAME'] and password == app.config['PASSWORD']:
+            flask.session['username'] = username
+            flask.session['password'] = password
+            flask.session['active'] = True
+            return flask.redirect('/admin')
+        else:
+            return render_template('login.html', page_title="Login")
 
 
 @main.route('/admin', methods=['GET'])
+@login_required
 def admin():
-    # posts = get_posts()
-    # categories = get_categories(posts)
     return render_template('admin.html', page_title="Admin")
 
 
