@@ -206,6 +206,15 @@ def get_categories(posts):
     return categories
 
 
+def is_authenticated():
+    try:
+        if not flask.session['active']:
+            return False
+    except KeyError:
+        return False
+    return True
+
+
 def login_required(f):
     def wrapper():
         try:

@@ -1,4 +1,4 @@
-from App.modules.helpers.helpers import get_posts, get_categories, log_view, get_views, login_required
+from App.modules.helpers.helpers import get_posts, get_categories, log_view, get_views, login_required, is_authenticated
 from App.modules.api.api import get_markdown
 from flask import render_template
 from flask import Blueprint
@@ -26,6 +26,8 @@ def posts():
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
+        if is_authenticated():
+            return flask.redirect('/admin')
         return render_template('login.html', page_title="Login")
     elif request.method == 'POST':
         username = request.form['username']
