@@ -24,13 +24,13 @@ body {
   border: 1px solid rgb(133, 133, 133);
   border-right: none;
   padding: 5px;
-  height: 20px;
+  height: 35px;
   border-radius: 5px 0 0 5px;
   outline: none;
   color: rgb(133, 133, 133);
 }
 
-.searchTerm:focus{
+.searchTerm:focus {
   color: rgb(93, 93, 93);
 }
 
@@ -45,7 +45,7 @@ body {
   font-size: 20px;
 }
 
-.wrap{
+.wrap {
   width: 100%;
 }
 
@@ -54,50 +54,153 @@ body {
   vertical-align: 2px;
 }
 
-/* 
+.post-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem calc(35% - 12rem);
+}
+
+html {
+  height: 100%;
+}
+
 body {
   height: 100%;
-  width: 100%;
-  left:0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+}
+
+.container {
+  height: calc(100% - 87.8);
+}
+
+.form-control {
+  box-shadow: none;
+  border-color: #ddd;
+}
+
+
+/* .form-control:focus {
+	border-color: #4aba70;
+} */
+
+.form {
+  margin: 0;
   position: absolute;
-background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
-background-size: 1800% 1800%;
-
--webkit-animation: rainbow 10s ease infinite;
--z-animation: rainbow 10s ease infinite;
--o-animation: rainbow 10s ease infinite;
-  animation: rainbow 10s ease infinite;
-} */
-
-/* @-webkit-keyframes rainbow {
-  0%{background-position:0% 82%}
-  50%{background-position:100% 19%}
-  100%{background-position:0% 82%}
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-@-moz-keyframes rainbow {
-  0%{background-position:0% 82%}
-  50%{background-position:100% 19%}
-  100%{background-position:0% 82%}
-}
-@-o-keyframes rainbow {
-  0%{background-position:0% 82%}
-  50%{background-position:100% 19%}
-  100%{background-position:0% 82%}
-}
-@keyframes rainbow { 
-  0%{background-position:0% 82%}
-  50%{background-position:100% 19%}
-  100%{background-position:0% 82%}
-} */
 
-/* 
-footer {
-  position: relative;
-  margin-top: -180px;
-  height: 180px;
-  clear: both;
-  background-color: red;
-} */
+.login-form {
+  width: 350px;
+  margin: 0 auto;
+  padding: 30px 0;
+  /* height: 100%; */
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.login-form form {
+  color: #434343;
+  border-radius: 1px;
+  margin-bottom: 15px;
+  background: #fff;
+  border: 1px solid #f3f3f3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  padding-top: 0px;
+}
+
+.login-form h4 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.login-form .avatar {
+  color: red;
+  margin: 30px auto 15px;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  z-index: 9;
+  background: #1a1b20;
+  padding: 15px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.login-form .avatar i {
+  /* font-size: 62px; */
+}
+
+.login-form .form-group {
+  margin-bottom: 20px;
+}
+
+.login-form .form-control,
+.login-form .btn {
+  min-height: 40px;
+  border-radius: 2px;
+  transition: all 0.5s;
+  width: 100%;
+}
+
+.form-control {
+  /* width: 98% !important; */
+}
+
+.login-form .close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.login-form .btn {
+  background: rgb(15, 180, 0);
+  border: none;
+  line-height: normal;
+}
+
+.login-form .btn:hover,
+.login-form .btn:focus {
+  background: rgb(11, 136, 0);
+}
+
+.login-form .checkbox-inline {
+  float: left;
+}
+
+.login-form input[type="checkbox"] {
+  margin-top: 2px;
+}
+
+.login-form .forgot-link {
+  float: right;
+}
+
+.login-form .small {
+  font-size: 13px;
+}
+
+.login-form a {
+  color: #4aba70;
+}
+
+.modal-title {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+input[type=text],
+[type=email],
+[type=password] {
+  padding: 0 8px;
+}
+
