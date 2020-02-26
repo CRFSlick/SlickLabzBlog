@@ -1,4 +1,5 @@
 from App import app
+import flask
 import json
 import glob
 import time
@@ -203,3 +204,14 @@ def get_categories(posts):
         if category not in categories:
             categories.append(category)
     return categories
+
+
+def login_required(f):
+    def wrapper():
+        try:
+            if not flask.session['active']:
+                return flask.redirect('/login')
+        except KeyError:
+            return flask.redirect('/login')
+        return f()
+    return wrapper
