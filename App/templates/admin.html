@@ -1,0 +1,11 @@
+{% extends "default.html" %}
+{% block content %}
+
+{% if posts|length <= 5 %}
+{% set count=posts|length %}
+{% else %}
+{% set count=5 %}
+{% endif %}
+
+
+{% endblock %}

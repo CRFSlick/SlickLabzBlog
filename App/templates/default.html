@@ -28,8 +28,9 @@
 </head>
 
 <body>
+  <div class="main-container">
   <header>
-    <h2><a href="/">SlickLabz Blog</a></h2>
+    <h2 style="font-weight: bold;"><a href="/">SlickLabz Blog</a></h2>
     <nav class="icons">
       <a href="https://github.com/CRFSlick" target="_blank"><svg>
           <use xlink:href="{{ url_for('static', filename='fontawesome/brands.svg') }}#github"></use>
@@ -40,8 +41,50 @@
         </svg></a>
     </nav>
   </header>
+  <br>
 
   {% block content %}
   {% endblock %}
 
+  {% if post_footer %}
+
+  <div style="display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem calc(35% - 12rem);">
+  <a class="gray" href="/">« Home</a>
+  <a class="gray" href="/posts">More Posts »</a>
+  </div>
+
+  <br><br>
+
+  <footer style="text-align: center;">
+    <span style="font-size: 1rem; color:gray;">© Copyright 2020 SlickLabz. All rights reserved.</span>
+  </footer>
+
+  <!-- <footer style="	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center">
+    <a class="gray" href="/" style="font-weight: bold;">« Home</a>
+    <span style="font-size: 1rem;"><< © Copyright 2020 SlickLabz. All rights reserved. >></span>
+    <a class="gray" href="/posts" style="font-weight: bold;">More Posts »</a>
+  </footer> -->
+
+  {% elif custom_footer %}
+
+  <!-- Todo# Impement custom footers -->
+
+  {% else %}
+
+  <br><br>
+
+  <footer style="text-align: center;">
+    <span style="font-size: 1rem; color:gray;">© Copyright 2020 SlickLabz. All rights reserved.</span>
+  </footer>
+
+  {% endif %}
+
+</div>
 </body>

@@ -22,6 +22,21 @@ def posts():
     return render_template('posts.html', posts=posts, categories=categories, page_title="All Posts")
 
 
+@main.route('/login', methods=['GET'])
+def login():
+    # posts = get_posts()
+    # categories = get_categories(posts)
+    return render_template('login.html', page_title="Login")
+
+
+
+@main.route('/admin', methods=['GET'])
+def admin():
+    # posts = get_posts()
+    # categories = get_categories(posts)
+    return render_template('admin.html', page_title="Admin")
+
+
 @main.route('/<category>/<subcategory>/<post>', methods=['GET'])
 def display_post(category, subcategory, post):
     requested_post = f'{category}-{subcategory}-{post}'
@@ -33,6 +48,6 @@ def display_post(category, subcategory, post):
             post['data']['views'] = get_views(post)
             post['data']['content'] = get_markdown(post['data']['content'], requested_post)
             page_tile = f'{post["data"]["sub_category"]} - {post["data"]["title"]}'
-            return render_template('post.html', post=post, page_title=page_tile)
+            return render_template('post.html', post=post, page_title=page_tile, post_footer=True)
 
     abort(404)

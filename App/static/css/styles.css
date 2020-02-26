@@ -1,3 +1,11 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
 .center {
   display: block;
   margin-left: auto;
@@ -83,4 +91,13 @@ background-size: 1800% 1800%;
   0%{background-position:0% 82%}
   50%{background-position:100% 19%}
   100%{background-position:0% 82%}
+} */
+
+/* 
+footer {
+  position: relative;
+  margin-top: -180px;
+  height: 180px;
+  clear: both;
+  background-color: red;
 } */
