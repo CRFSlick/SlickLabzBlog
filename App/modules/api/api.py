@@ -1,4 +1,4 @@
-from App.modules.helpers.helpers import determine_slash_type
+from App.modules.helpers.helpers import determine_slash_type, remove_img_hrefs
 from App.routes.error_handler import APIError
 from App import app
 import requests
@@ -45,12 +45,12 @@ def get_markdown(markdown_raw, requested_post):
         cached_markdown = open(f'{path_to_cached_files}{requested_post}.html', 'r', encoding='utf-8').read()
         cached_markdown_raw = open(f'{path_to_cached_files}{requested_post}.md', 'r', encoding='utf-8').read()
     except FileNotFoundError:
-        markdown = github_api(markdown_raw)
+        markdown = remove_img_hrefs(github_api(markdown_raw))
         cache_page(markdown, markdown_raw, requested_post)
         return markdown
 
     if markdown_raw != cached_markdown_raw:
-        markdown = github_api(markdown_raw)
+        markdown = remove_img_hrefs(github_api(markdown_raw))
         cache_page(markdown, markdown_raw, requested_post)
         return markdown
 
