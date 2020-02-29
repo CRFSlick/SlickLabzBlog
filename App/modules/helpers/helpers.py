@@ -206,7 +206,31 @@ def get_categories(posts):
     return categories
 
 
+def remove_img_hrefs(data):
+    """
+    Removed <a href>s added in by Github markdown so that images are not click-able
+
+    Args:
+        data (str)
+
+    Returns:
+        data (str)
+
+    """
+    result = re.findall('<a.*?(href="\/static\/images\/.*?.*?)"', data)
+    for i in result:
+        data = data.replace(i, '')
+    return data
+
+
 def is_authenticated():
+    """
+    Checks if user is authenticated
+
+    Returns:
+        (bool)
+
+    """
     try:
         if not flask.session['active']:
             return False
@@ -216,6 +240,10 @@ def is_authenticated():
 
 
 def login_required(f):
+    """
+    Wrapper for login_required
+
+    """
     def wrapper():
         try:
             if not flask.session['active']:
