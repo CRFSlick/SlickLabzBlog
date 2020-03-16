@@ -42,10 +42,11 @@ def login():
             return render_template('login.html', page_title="Login")
 
 
-@main.route('/admin', methods=['GET'])
-@login_required
-def admin():
-    return render_template('admin.html', page_title="Admin")
+'''#Todo'''
+# @main.route('/admin', methods=['GET'])
+# @login_required
+# def admin():
+#     return render_template('admin.html', page_title="Admin")
 
 
 @main.route('/<category>/<subcategory>/<post>', methods=['GET'])
