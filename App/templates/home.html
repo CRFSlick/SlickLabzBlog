@@ -7,11 +7,12 @@
 {% set count=5 %}
 {% endif %}
 
-<!-- <br> -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 <article>
   <header>
-    <h1>Welcome!</h1>
+    <h1><span id="js-auto-type">> </span><span id=cursor>|</span></h1>
     <div>
       My name is Karol, aka CRFSlick, or Slick, and I like to work on wargames and capture the flag challenges in
       my free time.
@@ -49,8 +50,5 @@
     </li>
   </ul>
 </article>
-
-
-
 
 {% endblock %}
