@@ -9,7 +9,6 @@ async function autoType(e, word) {
     var buffer = e.html();
     for(var i = 0; i < word.length; i++) {
         await sleep(125);
-        console.log(word.charAt(i));
         buffer += word.charAt(i);
         e.html(buffer);
     }
@@ -20,7 +19,6 @@ async function autoType(e, word) {
 
 async function cursorBlink(e) {
     while (true){
-        console.log("test")
         await sleep(750);
         e.fadeOut(100);
         await sleep(750);
