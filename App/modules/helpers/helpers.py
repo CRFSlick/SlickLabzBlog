@@ -122,7 +122,7 @@ def write_meta(metadata, data, index_1, index_2, filename):
     meta = f'{start_tag}\n{json.dumps(metadata, indent=4)}\n{end_tag}\n\n'
 
     slash = determine_slash_type()
-    open(f'{app.root_path}{slash}posts{slash}{filename}', 'w+').write(meta + data_to_keep)
+    open(f'{app.root_path}{slash}posts{slash}{filename}', 'w+', encoding='utf-8').write(meta + data_to_keep)
     return
 
 
@@ -142,6 +142,7 @@ def get_post_data(data, filename):
     end_tag = '{{ META END }}'
     index_1 = data.find(start_tag)
     index_2 = data.find(end_tag)
+    changed = False
 
     if index_1 != -1 and index_2 != -1:
         try:
@@ -153,8 +154,18 @@ def get_post_data(data, filename):
             metadata['timestamp']
         except KeyError:
             metadata['timestamp'] = int(time.time())
+            changed = True
+
+        try:
+            metadata['cover_img']
+        except KeyError:
+            metadata['cover_img'] = 'default.png'
+            changed = True
+
+        if changed:
             write_meta(metadata, data, index_1, index_2, filename)
 
+        metadata['cover_img'] = 'images/' + metadata['cover_img']
         metadata['content'] = data[index_2 + len(end_tag):].strip()
         return metadata
 

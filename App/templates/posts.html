@@ -25,11 +25,11 @@
   <ul class="archive">
     {% for post in posts %}
       {% if post.data.category == category %}
-        <li>
-          <span>
-            <a href="{{ post.url }}">{{ post.data.sub_category }} - {{ post.data.title }}</a>
-          </span>
-        </li>
+        <span>
+          <img class="cover-img" src="{{ url_for('static', filename=post.data.cover_img) }}">
+          <a href="{{ post.url }}">{{ post.data.sub_category }} - {{ post.data.title }}</a>
+        </span>
+        <br>
       {% endif %}
     {% endfor %}
   </ul>

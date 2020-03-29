@@ -23,7 +23,7 @@
   </header>
 </article>
 
-<article>
+<!--<article>
   <header>
     <h1>Recent Posts</h1>
   </header>
@@ -34,6 +34,21 @@
         <a href="{{ posts[i].url }}">{{ posts[i].data.sub_category }} - {{ posts[i].data.title }}</a>
       </span>
     </li>
+    {% endfor %}
+  </ul>
+</article>-->
+
+<article>
+  <header>
+    <h1>Recent Posts</h1>
+  </header>
+  <ul class="archive">
+    {% for i in range(0, count) %}
+      <span>
+        <img class="cover-img" src="{{ url_for('static', filename=posts[i].data.cover_img) }}">
+        <a href="{{ posts[i].url }}">{{ posts[i].data.sub_category }} - {{ posts[i].data.title }}</a>
+      </span>
+    <br>
     {% endfor %}
   </ul>
 </article>
