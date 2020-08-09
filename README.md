@@ -2,4 +2,4 @@
 
 A personal blog
 
-Live at: http://blog.slicklabz.com
+Live at: http://blog.slicklabz.com!
