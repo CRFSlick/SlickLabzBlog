@@ -160,12 +160,19 @@ def get_post_data(data, filename):
             metadata['cover_img']
         except KeyError:
             metadata['cover_img'] = 'default.png'
-            changed = True
+            # changed = True
+
+        try:
+            metadata['banner_img']
+        except KeyError:
+            metadata['banner_img'] = 'default.png'
+            # changed = True
 
         if changed:
             write_meta(metadata, data, index_1, index_2, filename)
 
         metadata['cover_img'] = 'images/' + metadata['cover_img']
+        metadata['banner_img'] = 'images/' + metadata['banner_img']
         metadata['content'] = data[index_2 + len(end_tag):].strip()
         return metadata
 

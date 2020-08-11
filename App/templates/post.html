@@ -1,18 +1,56 @@
 {% extends "default.html" %}
 {% block content %}
 
+<!-- Note: Minor style adjustments for posts -->
+<style>
+  h1.title {
+    position: relative;
+    border-bottom: 1px solid rgba(140, 140, 142, 0.16);
+    margin-bottom: .5em;
+    padding-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 19.92px;
+    line-height: 1.6;
+  }
+
+  pre {
+    font-weight: bold;
+  }
+
+  .time {
+    padding-top: 10px;
+  }
+</style>
+
+<!-- Post Content -->
 <article>
     <header>
       <span class="categories">#{{ post.data.category }}</span>
-      <h1 style="position: relative">
+      <br><br>
+      <h1 class="title">
         <img class="cover-img" src="{{ url_for('static', filename=post.data.cover_img) }}">
         {{ post.data.sub_category }} - {{post.data.title}}
       </h1>
-      <time datetime="date">{{ post.data.date }}</time>
+      <div class="time">
+        <time datetime="date">{{ post.data.date }}</time>
+      </div>
     </header>
     <span class="markdown-body">
       {{ post.data.content|safe }}
     </span>
 </article>
+
+<!-- Pagination -->
+<ul class="pagination justify-content-center mb-4">
+  <li class="page-item">
+    <a class="page-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Go Back Home</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/posts"><i class="fa fa-list" aria-hidden="true"></i> See More Posts</a>
+  </li>
+</ul>
 
 {% endblock %}

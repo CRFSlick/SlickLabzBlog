@@ -4,32 +4,24 @@
   <script src="https://kit.fontawesome.com/71dfc51b7d.js" crossorigin="anonymous"></script>
 
   <title>{{ page_title }}</title>
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/classes.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/markdown.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
-  <style>
-    .markdown-body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 45px;
-    }
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    @media (max-width: 767px) {
-      .markdown-body {
-        padding: 15px;
-      }
-    }
-  </style>
 </head>
 
 <body>
   <div class="main-container">
     <header>
-      <h2 style="font-weight: bold;"><a href="/">SlickLabz Blog</a></h2>
+      <h1 style="font-weight: bold;"><a href="/">SlickLabz Blog</a></h1>
       <nav class="icons">
         <a href="https://github.com/CRFSlick" target="_blank"><svg>
             <use xlink:href="{{ url_for('static', filename='fontawesome/brands.svg') }}#github"></use>
@@ -45,22 +37,15 @@
     {% block content %}
     {% endblock %}
 
-    {% if post_footer %}
-
-    <div class=post-footer>
-      <a class="gray" href="/">« Home</a>
-      <a class="gray" href="/posts">More Posts »</a>
-    </div>
-
-    {% elif custom_footer %}
-
-    <!-- Todo# Implement custom footers? -->
-
-    {% endif %}
-
     <br><br>
     <footer style="text-align: center;">
-      <span style="font-size: 1rem; color: gray;">© Copyright 2020 SlickLabz. All rights reserved.</span>
+      <span style="font-size: 1rem; color: gray;">
+        Made with <i class="fa fa-heart" aria-hidden="true"></i> by CRFSlick
+      </span>
+      <br>
+      <span style="font-size: .7rem; color: gray;"><i class="fa fa-copyright" aria-hidden="true"></i>
+        Copyright 2021 SlickLabz
+      </span>
     </footer>
   </div>
 </body>

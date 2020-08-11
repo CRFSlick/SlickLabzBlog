@@ -1,13 +1,27 @@
 {% extends "default.html" %}
 {% block content %}
 
+<!-- Note: Minor style adjustments for error -->
+<style>
+  h1.title {
+    position: relative;
+    border-bottom: 1px solid rgba(140, 140, 142, 0.16);
+    margin-bottom: .5em;
+    padding-bottom: 20px;
+    font-weight: bold;
+  }
+</style>
+
+<!-- Error Code and Description -->
 <article>
     <header>
-      <h1>{{ code }} - {{ name }} :(</h1>
-        <div></div>
-        {{ description }}
-        <br><br>
-        <a href="/">Back to saftey</a>
+      <h1 class="title">{{ code }} - {{ name }} :(</h1>
+        {{ description }}<br><br>
+        <a href="/">
+          <button type="button" class="btn btn-secondary">
+            <i class="fa fa-home" aria-hidden="true"></i> Take me home!
+          </button>
+        </a>
     </header>
 </article>
 

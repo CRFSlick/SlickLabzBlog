@@ -23,32 +23,6 @@ def posts():
     return render_template('posts.html', posts=posts, categories=categories, page_title="All Posts")
 
 
-@main.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'GET':
-        if is_authenticated():
-            return flask.redirect('/admin')
-        return render_template('login.html', page_title="Login")
-    elif request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        if username == app.config['USERNAME'] and password == app.config['PASSWORD']:
-            flask.session['username'] = username
-            flask.session['password'] = password
-            flask.session['active'] = True
-            return flask.redirect('/admin')
-        else:
-            return render_template('login.html', page_title="Login")
-
-
-'''#Todo'''
-# @main.route('/admin', methods=['GET'])
-# @login_required
-# def admin():
-#     return render_template('admin.html', page_title="Admin")
-
-
 @main.route('/<category>/<subcategory>/<post>', methods=['GET'])
 def display_post(category, subcategory, post):
     requested_post = f'{category}-{subcategory}-{post}'
@@ -63,3 +37,30 @@ def display_post(category, subcategory, post):
             return render_template('post.html', post=post, page_title=page_tile, post_footer=True)
 
     abort(404)
+
+
+'''#Todo'''
+# @main.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'GET':
+#         if is_authenticated():
+#             return flask.redirect('/admin')
+#         return render_template('login.html', page_title="Login")
+#     elif request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']
+#
+#         if username == app.config['USERNAME'] and password == app.config['PASSWORD']:
+#             flask.session['username'] = username
+#             flask.session['password'] = password
+#             flask.session['active'] = True
+#             return flask.redirect('/admin')
+#         else:
+#             return render_template('login.html', page_title="Login")
+
+
+'''#Todo'''
+# @main.route('/admin', methods=['GET'])
+# @login_required
+# def admin():
+#     return render_template('admin.html', page_title="Admin")
