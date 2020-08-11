@@ -50,4 +50,4 @@ def page_not_found(e):
         Log(directory=log_path).out(f'Cod: {e.code} | Path: {request.path}', level='error')
 
     # Handle error
-    return render_template('error.html', title=e.code, code=e.code, name=e.name, description=e.description), e.code
+    return render_template('error.html', page_title=e.code, code=e.code, name=e.name, description=e.description), e.code

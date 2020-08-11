@@ -452,3 +452,7 @@ body {
       padding: 15px;
     }
   }
+
+  .todo {
+    color: gray;
+  }

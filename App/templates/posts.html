@@ -3,39 +3,57 @@
 
 <!-- #Todo: This whole page needs to be redone with the new UI found on the home page -->
 
-<article>
-  <header>
-    <h1>Search</h1>
-  </header>
-  <!-- Search Bar Source: https://codepen.io/huange/pen/rbqsD -->
-  <div class="wrap">
-    <div class="search">
-      <input type="text" class="searchTerm" placeholder="This doesn't work yet, sorry! #Todo">
-      <button type="submit" class="searchButton">
-        <i class="fa fa-search"></i>
-      </button>
+<div class="container">
+  <!-- Search Widget -->
+  <div class="card my-4">
+    <h5 class="card-header"><i class="fa fa-search" aria-hidden="true"></i> Search <span class="todo">#Todo</span></h5>
+    <div class="card-body">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for a post using title, category, or tags!">
+        <span class="input-group-append">
+          <button class="btn btn-secondary" type="button">Go!</button>
+        </span>
+      </div>
     </div>
   </div>
-</article>
+  <div class="row">
 
-<!-- List all posts -->
-{% for category in categories %}
-<article>
-  <header>
-    <h1>{{ category }}</h1>
-  </header>
-  <ul class="archive">
-    {% for post in posts %}
+    <!-- Blog Entries Column -->
+    <div class="col-md-12" style="padding-top: 45px;">
+
+      {% for category in categories %}
+      {% for post in posts %}
       {% if post.data.category == category %}
-        <span>
-          <img class="cover-img" src="{{ url_for('static', filename=post.data.cover_img) }}">
-          <a href="{{ post.url }}">{{ post.data.sub_category }} - {{ post.data.title }}</a>
-        </span>
-        <br>
+
+      <!-- Blog Post -->
+      <div class="card mb-4">
+        <img class="card-img-top" src="{{ url_for('static', filename=post.data.banner_img) }}" alt="Card image cap">
+        <div class="card-body">
+          <h2 class="card-title">{{ post.data.sub_category }} - {{ post.data.title }}</h2>
+          <p class="card-text">{{ post.data.description }}</p>
+          <a href="{{ post.url }}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+          Posted on {{ post.data.date }}
+        </div>
+      </div>
+
       {% endif %}
-    {% endfor %}
-  </ul>
-</article>
-{% endfor %}
+      {% endfor %}
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+<!-- Pagination -->
+<ul class="pagination justify-content-center mb-4">
+  <li class="page-item">
+    <a class="page-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Go Back Home</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/posts"><i class="fa fa-list" aria-hidden="true"></i> Next Post <span class="todo">#Todo</span></a>
+  </li>
+</ul>
 
 {% endblock %}

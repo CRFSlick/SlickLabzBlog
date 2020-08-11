@@ -27,6 +27,23 @@ async function cursorBlink(e) {
 }
 
 $(document).ready(async function () {
-    await sleep(250);
-    setTimeout(function() {autoType($("#js-auto-type"), greetings[Math.floor(Math.random() * greetings.length)])}, 0);
+    // await sleep(250);
+    // setTimeout(function() {autoType($("#js-auto-type"), greetings[Math.floor(Math.random() * greetings.length)])}, 0);
+
+    posts_shown = false;
+    $("#show_more_posts").click(function(){
+        if (posts_shown) {
+            $("#show_more_posts").html(" Show All Posts");
+            $(".post_extra").fadeOut();
+            posts_shown = false;
+        } else {
+            $("#show_more_posts").html(" Show Only Recent");
+            $(".post_extra").fadeIn();
+            posts_shown = true;
+        }
+    });
+
+    $("#back_to_top").click(function(){
+        $("html, body").animate({scrollTop: 0}, 200);
+    })
 });

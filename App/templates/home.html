@@ -1,12 +1,6 @@
 {% extends "default.html" %}
 {% block content %}
 
-{% if posts|length <= 3 %}
-{% set count=posts|length %}
-{% else %}
-{% set count=3 %}
-{% endif %}
-
 <!-- Page Content -->
 <div class="container">
 
@@ -15,18 +9,22 @@
     <!-- Blog Entries Column -->
     <div class="col-md-8" style="padding-top: 45px;">
 
-      {% for i in range(0, count) %}
-
+      {% for post in posts %}
+      
       <!-- Blog Post -->
-      <div class="card mb-4">
-        <img class="card-img-top" src="{{ url_for('static', filename=posts[i].data.banner_img) }}" alt="Card image cap">
+      {% if loop.index - 1 < shown_posts %}
+      <div class="card mb-4 ">
+      {% else %}
+      <div class="card mb-4 post_extra" style="display: none;">
+      {% endif %}
+        <img class="card-img-top" src="{{ url_for('static', filename=post.data.banner_img) }}" alt="Banner">
         <div class="card-body">
-          <h2 class="card-title">{{ posts[i].data.sub_category }} - {{ posts[i].data.title }}</h2>
-          <p class="card-text">{{ posts[i].data.description }}</p>
-          <a href="{{ posts[i].url }}" class="btn btn-primary">Read More &rarr;</a>
+          <h2 class="card-title">{{ post.data.sub_category }} - {{ post.data.title }}</h2>
+          <p class="card-text">{{ post.data.description }}</p>
+          <a href="{{ post.url }}" class="btn btn-primary">Read More &rarr;</a>
         </div>
         <div class="card-footer text-muted">
-          Posted on {{ posts[i].data.date }}
+          Posted on {{ post.data.date }}
         </div>
       </div>
 
@@ -35,10 +33,10 @@
       <!-- Pagination -->
       <ul class="pagination justify-content-center mb-4">
         <li class="page-item">
-          <a class="page-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Go Back Home</a>
+          <a class="page-link" id="back_to_top"><i class="fa fa-arrow-up" aria-hidden="true"></i> Back To Top</a>
         </li>
         <li class="page-item">
-          <a class="page-link" href="/posts"><i class="fa fa-list" aria-hidden="true"></i> See More Posts</a>
+          <a class="page-link" id="show_more_posts"><i class="fa fa-list" aria-hidden="true"></i> Show All Posts</a>
         </li>
       </ul>
     </div>
@@ -48,7 +46,7 @@
 
       <!-- Search Widget -->
       <div class="card my-4">
-        <h5 class="card-header"><i class="fa fa-search" aria-hidden="true"></i> Search #Todo</h5>
+        <h5 class="card-header"><i class="fa fa-search" aria-hidden="true"></i> Search <span class="todo">#Todo</span></h5>
         <div class="card-body">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search for...">
@@ -61,7 +59,7 @@
 
       <!-- Categories Widget -->
       <div class="card my-4">
-        <h5 class="card-header"><i class="fa fa-tags" aria-hidden="true"></i> Categories #Todo</h5>
+        <h5 class="card-header"><i class="fa fa-tags" aria-hidden="true"></i> Categories <span class="todo">#Todo</span></h5>
         <div class="card-body">
           <div class="row">
             <div class="col-lg-6">
@@ -131,8 +129,9 @@
       <div class="card my-4">
         <h5 class="card-header"><i class="fa fa-list-alt" aria-hidden="true"></i> Development Todo</h5>
         <div class="card-body">
-          This website is custom made, so there might be some things that need fixing here and there.<br><br>
-          Anyway, this is a short list of things that I will finish in the near future... maybe...<br><br>
+          This website is custom made, so there might be some things that need fixing here and there. Anything that has the 
+          <span class="todo">#Todo</span> tag next to it doesn't work, but should when I get around to it.<br><br>
+          Anyway, here short list of things that I will try and work on... at some point.<br><br>
 
           <ul>
             <li>Update '/posts' to new UI</li>
@@ -144,9 +143,5 @@
     </div>
   </div>
 </div>
-
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 {% endblock %}
